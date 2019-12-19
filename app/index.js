@@ -1,4 +1,5 @@
 import { COLORS, SIZE } from "./config.js";
+import Snake from "./snake.js";
 
 // set color variavles on css
 Object.keys(COLORS).forEach(key => {
@@ -26,6 +27,14 @@ for (let x = 0; x < canvas.width; x++) {
   }
 }
 
+// create snake :)
+const snake = new Snake({
+  x: 0,
+  y: 0,
+  width: canvas.width,
+  height: canvas.height
+});
+
 // drawloop
 window.requestAnimationFrame(function draw() {
   // draw grid
@@ -34,6 +43,17 @@ window.requestAnimationFrame(function draw() {
       context.fillStyle = COLORS["mono-darker"];
     else context.fillStyle = COLORS["mono-dark"];
     context.fillRect(point.x, point.y, 1, 1);
+  });
+
+  // draw snake
+  context.fillStyle = COLORS["mono-light"];
+  snake.cells.forEach((cell, index) => {
+    // head
+    if (index === snake.cells.length - 1)
+      context.fillStyle = COLORS["primary-dark"];
+
+    //tail
+    context.fillRect(cell.x, cell.y, 1, 1);
   });
 
   window.requestAnimationFrame(draw);
