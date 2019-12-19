@@ -7,6 +7,8 @@
 html,
 body {
   height: 100%;
+  background-color: var(--mono-dark);
+  color: var(--mono-light);
 }
 
 body {
