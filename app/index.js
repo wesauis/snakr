@@ -18,3 +18,23 @@ canvas.style.height = `${height}px`;
 canvas.width = width / SIZE;
 canvas.height = height / SIZE;
 
+// get the grid
+const grid = [];
+for (let x = 0; x < canvas.width; x++) {
+  for (let y = 0; y < canvas.height; y++) {
+    grid.push({ x, y });
+  }
+}
+
+// drawloop
+window.requestAnimationFrame(function draw() {
+  // draw grid
+  grid.forEach(point => {
+    if (!((point.x % 2 === 0) === (point.y % 2 === 0)))
+      context.fillStyle = COLORS["mono-darker"];
+    else context.fillStyle = COLORS["mono-dark"];
+    context.fillRect(point.x, point.y, 1, 1);
+  });
+
+  window.requestAnimationFrame(draw);
+});
