@@ -1,3 +1,7 @@
+export const SIZE = 20;
+
+export const INITIAL_LENGHT = 5;
+
 export const COLORS = {
   'primary-light': '#e282ad',
   'primary-dark': '#ff0080',
