@@ -58,3 +58,13 @@ window.requestAnimationFrame(function draw() {
 
   window.requestAnimationFrame(draw);
 });
+
+let updateID;
+window.addEventListener("keydown", event => {
+  snake.direction = event.code;
+  snake.update();
+  if (updateID) clearInterval(updateID);
+  updateID = setInterval(snake.update, 1000 / 5);
+});
+
+snake.addEventListener("death", () => location.reload());

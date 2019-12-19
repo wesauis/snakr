@@ -2,6 +2,9 @@ import { INITIAL_LENGHT } from "./config.js";
 import { EventManager } from "./event.js";
 
 export default function Snake(bounds) {
+  // setup events
+  const events = new EventManager(["death", "head_position"]);
+
   // create snake
   const cells = [];
   for (let i = 0; i < INITIAL_LENGHT; i++) {
@@ -31,6 +34,7 @@ export default function Snake(bounds) {
 
     cells.push(head);
 
+    events.dispatch("head_position", Object.assign({}, head));
 
     cells.forEach((cell, index) => {
       if (index === lastI) return;
@@ -41,6 +45,7 @@ export default function Snake(bounds) {
 
   return {
     cells,
+    addEventListener: events.listen,
     grow() {
       cells.splice(0, 0, { x: cells[0].x, y: cells[0].y });
     },
