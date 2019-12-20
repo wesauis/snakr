@@ -34,14 +34,14 @@ export default function Snake(bounds) {
 
     cells.push(head);
 
-    events.dispatch("head_position", Object.assign({}, head));
-
     cells.forEach((cell, index) => {
       if (index === lastI) return;
 
       if (cell.x === head.x && cell.y === head.y) events.dispatch("death");
     });
-  };
+
+    events.dispatch("head_position", Object.assign({}, head));
+  }
 
   return {
     cells,
@@ -59,6 +59,6 @@ export default function Snake(bounds) {
       };
       const direction = DIRECTIONS[directioName];
       if (direction) _direction = direction;
-    },
-  }
+    }
+  };
 }

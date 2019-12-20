@@ -34,9 +34,22 @@ const snake = Snake({
   width: canvas.width,
   height: canvas.height
 });
+function createFruit() {
+  return {
+    x: Math.floor(Math.random() * canvas.width),
+    y: Math.floor(Math.random() * canvas.height)
+  };
+}
+let fruit = undefined;
+
+// score span
+const $score = document.querySelector("span#len");
+let score = 0;
 
 // drawloop
 window.requestAnimationFrame(function draw() {
+  if (!fruit) fruit = createFruit();
+
   // draw grid
   grid.forEach(point => {
     if (!((point.x % 2 === 0) === (point.y % 2 === 0)))
@@ -44,6 +57,10 @@ window.requestAnimationFrame(function draw() {
     else context.fillStyle = COLORS["mono-dark"];
     context.fillRect(point.x, point.y, 1, 1);
   });
+
+  // draw fruit
+  context.fillStyle = COLORS["primary-light"];
+  context.fillRect(fruit.x, fruit.y, 1, 1);
 
   // draw snake
   context.fillStyle = COLORS["mono-light"];
@@ -68,3 +85,13 @@ window.addEventListener("keydown", event => {
 });
 
 snake.addEventListener("death", () => location.reload());
+
+snake.addEventListener("head_position", ({ data }) => {
+  if (data.x === fruit.x && data.y === fruit.y) {
+    fruit = undefined;
+    snake.grow();
+
+    score++;
+    $score.innerText = score;
+  }
+});
