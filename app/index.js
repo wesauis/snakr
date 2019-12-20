@@ -42,8 +42,12 @@ function createFruit() {
 }
 let fruit = undefined;
 
+// hiscore span
+const $hiScore = document.querySelector("#hi span");
+$hiScore.innerText = localStorage.getItem("hi_score") || 0;
+
 // score span
-const $score = document.querySelector("span#len");
+const $score = document.querySelector("#score span");
 let score = 0;
 
 // drawloop
@@ -84,7 +88,10 @@ window.addEventListener("keydown", event => {
   updateID = setInterval(snake.update, 1000 / 5);
 });
 
-snake.addEventListener("death", () => location.reload());
+snake.addEventListener("death", () => {
+  if (+$hiScore.innerText < score) localStorage.setItem("hi_score", score);
+  location.reload();
+});
 
 snake.addEventListener("head_position", ({ data }) => {
   if (data.x === fruit.x && data.y === fruit.y) {
