@@ -5,4 +5,4 @@
 
 A snake game using JS, HTML and CSS
 
-Control the snake with your arrow keys, keep pressing for more speed
+Control the snake with the arrow keys, keep pressing for more speed
