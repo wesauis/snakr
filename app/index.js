@@ -42,13 +42,10 @@ function createFruit() {
 }
 let fruit = undefined;
 
-// hiscore span
+// score spans
 const $hiScore = document.querySelector("#hi span");
 $hiScore.innerText = localStorage.getItem("hi_score") || 0;
-
-// score span
 const $score = document.querySelector("#score span");
-let score = 0;
 
 // drawloop
 window.requestAnimationFrame(function draw() {
@@ -89,7 +86,8 @@ window.addEventListener("keydown", event => {
 });
 
 snake.addEventListener("death", () => {
-  if (+$hiScore.innerText < score) localStorage.setItem("hi_score", score);
+  if (+$hiScore.innerText < +$score.innerText)
+    localStorage.setItem("hi_score", +$score.innerText);
   location.reload();
 });
 
@@ -98,7 +96,6 @@ snake.addEventListener("head_position", ({ data }) => {
     fruit = undefined;
     snake.grow();
 
-    score++;
-    $score.innerText = score;
+    $score.innerText = +$score.innerText + 1;
   }
 });
