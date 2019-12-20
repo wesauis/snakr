@@ -3,6 +3,6 @@
 
 # Snakr
 
-A snake game using JS / HTML and CSS
+A snake game using JS, HTML and CSS
 
 Control the snake with your arrow keys, keep pressing for more speed
