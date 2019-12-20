@@ -28,7 +28,7 @@ for (let x = 0; x < canvas.width; x++) {
 }
 
 // create snake :)
-const snake = new Snake({
+const snake = Snake({
   x: 0,
   y: 0,
   width: canvas.width,
