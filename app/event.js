@@ -35,7 +35,10 @@ export function EventManager(event_types = []) {
   this.dispatch = (type, data) => {
     if (!events[type]) throw `error => type ${type} not exists`;
 
-    events[type].emit({ type, data });
+    events[type].emit({
+      type,
+      data
+    });
     return this;
   };
 

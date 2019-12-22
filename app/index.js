@@ -1,4 +1,7 @@
-import { COLORS, SIZE } from "./config.js";
+import {
+  COLORS,
+  SIZE
+} from "./config.js";
 import Snake from "./snake.js";
 
 // set color variavles on css
@@ -23,7 +26,10 @@ canvas.height = height / SIZE;
 const grid = [];
 for (let x = 0; x < canvas.width; x++) {
   for (let y = 0; y < canvas.height; y++) {
-    grid.push({ x, y });
+    grid.push({
+      x,
+      y
+    });
   }
 }
 
@@ -34,6 +40,7 @@ const snake = Snake({
   width: canvas.width,
   height: canvas.height
 });
+
 function createFruit() {
   return {
     x: Math.floor(Math.random() * canvas.width),
@@ -91,7 +98,9 @@ snake.addEventListener("death", () => {
   location.reload();
 });
 
-snake.addEventListener("head_position", ({ data }) => {
+snake.addEventListener("head_position", ({
+  data
+}) => {
   if (data.x === fruit.x && data.y === fruit.y) {
     fruit = undefined;
     snake.grow();

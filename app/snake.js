@@ -1,5 +1,9 @@
-import { INITIAL_LENGHT } from "./config.js";
-import { EventManager } from "./event.js";
+import {
+  INITIAL_LENGHT
+} from "./config.js";
+import {
+  EventManager
+} from "./event.js";
 
 export default function Snake(bounds) {
   // setup events
@@ -15,7 +19,10 @@ export default function Snake(bounds) {
   }
 
   // snake direction
-  let _direction = { x: 0, y: 0 };
+  let _direction = {
+    x: 0,
+    y: 0
+  };
 
   // update positon
   function update() {
@@ -47,15 +54,30 @@ export default function Snake(bounds) {
     cells,
     addEventListener: events.listen,
     grow() {
-      cells.splice(0, 0, { x: cells[0].x, y: cells[0].y });
+      cells.splice(0, 0, {
+        x: cells[0].x,
+        y: cells[0].y
+      });
     },
     update,
     set direction(directioName) {
       const DIRECTIONS = {
-        ArrowUp: { x: 0, y: -1 },
-        ArrowDown: { x: 0, y: 1 },
-        ArrowLeft: { x: -1, y: 0 },
-        ArrowRight: { x: 1, y: 0 }
+        ArrowUp: {
+          x: 0,
+          y: -1
+        },
+        ArrowDown: {
+          x: 0,
+          y: 1
+        },
+        ArrowLeft: {
+          x: -1,
+          y: 0
+        },
+        ArrowRight: {
+          x: 1,
+          y: 0
+        }
       };
       const direction = DIRECTIONS[directioName];
       if (direction) _direction = direction;
