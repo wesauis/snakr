@@ -19,7 +19,7 @@ export default function Snake(bounds) {
   }
 
   // snake direction
-  let _direction = {
+  let direction = {
     x: 0,
     y: 0
   };
@@ -30,8 +30,8 @@ export default function Snake(bounds) {
     const lastI = cells.length;
 
     const head = {
-      x: cells[lastI - 1].x + _direction.x,
-      y: cells[lastI - 1].y + _direction.y
+      x: cells[lastI - 1].x + direction.x,
+      y: cells[lastI - 1].y + direction.y
     };
 
     if (head.x < bounds.x) head.x = bounds.width - 1;
@@ -60,27 +60,29 @@ export default function Snake(bounds) {
       });
     },
     update,
-    set direction(directioName) {
+    setDirection(dircode) {
       const DIRECTIONS = {
-        ArrowUp: {
+        Up: {
           x: 0,
           y: -1
         },
-        ArrowDown: {
+        Down: {
           x: 0,
           y: 1
         },
-        ArrowLeft: {
+        Left: {
           x: -1,
           y: 0
         },
-        ArrowRight: {
+        Right: {
           x: 1,
           y: 0
         }
       };
-      const direction = DIRECTIONS[directioName];
-      if (direction) _direction = direction;
+
+      if (dircode in DIRECTIONS)
+        return direction = DIRECTIONS[dircode];
+      else return false;
     }
   };
 }

@@ -86,15 +86,21 @@ window.requestAnimationFrame(function draw() {
 
 let updateID;
 window.addEventListener("keydown", event => {
-  snake.direction = event.code;
+  const DIRCODES = {
+    ArrowUp: "Up",
+    ArrowDown: "Down",
+    ArrowLeft: "Left",
+    ArrowRight: "Right"
+  }
+  if (!snake.setDirection(DIRCODES[event.code])) return;
   snake.update();
   if (updateID) clearInterval(updateID);
   updateID = setInterval(snake.update, 1000 / 5);
 });
 
 snake.addEventListener("death", () => {
-  if (+$hiScore.innerText < +$score.innerText)
-    localStorage.setItem("hi_score", +$score.innerText);
+  const max = Math.max(+$hiScore.innerText, +$score.innerText)
+  localStorage.setItem("hi_score", max);
   location.reload();
 });
 
@@ -106,5 +112,12 @@ snake.addEventListener("head_position", ({
     snake.grow();
 
     $score.innerText = +$score.innerText + 1;
+  }
+});
+
+snake.addEventListener("head_position", () => {
+  if (snake.cells.length - 5 > grid.length) {
+    alert("YOU WIN!");
+    location.reload();
   }
 });
