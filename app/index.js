@@ -119,7 +119,7 @@ snake.addEventListener("head_position", ({
 });
 
 snake.addEventListener("head_position", () => {
-  if (snake.cells.length - 5 > grid.length) {
+  if (snake.cells.length > grid.length * 0.92) {
     alert("YOU WIN!");
     location.reload();
   }
