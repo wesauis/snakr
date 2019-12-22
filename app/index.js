@@ -4,6 +4,9 @@ import {
 } from "./config.js";
 import Snake from "./snake.js";
 
+const url = new URL(location.href);
+const BOX_SIZE = url.searchParams.get("boxsize") || SIZE;
+
 // set color variavles on css
 Object.keys(COLORS).forEach(key => {
   document.body.style.setProperty(`--${key}`, COLORS[key]);
@@ -14,13 +17,13 @@ const canvas = document.querySelector("canvas#game");
 const context = canvas.getContext("2d");
 
 // resize canvas
-const width = window.innerWidth - (window.innerWidth % SIZE);
-const height = window.innerHeight - (window.innerHeight % SIZE);
+const width = window.innerWidth - (window.innerWidth % BOX_SIZE);
+const height = window.innerHeight - (window.innerHeight % BOX_SIZE);
 
 canvas.style.width = `${width}px`;
 canvas.style.height = `${height}px`;
-canvas.width = width / SIZE;
-canvas.height = height / SIZE;
+canvas.width = width / BOX_SIZE;
+canvas.height = height / BOX_SIZE;
 
 // get the grid
 const grid = [];
