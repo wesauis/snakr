@@ -1,47 +1,37 @@
 import {
   COLORS,
-  SIZE
+  DEFAULT_SIZE
 } from "./config.js";
 import Snake from "./snake.js";
-
-const url = new URL(location.href);
-const BOX_SIZE = url.searchParams.get("boxsize") || SIZE;
 
 // set color variavles on css
 Object.keys(COLORS).forEach(key => {
   document.body.style.setProperty(`--${key}`, COLORS[key]);
 });
 
-// setup canvas
+// get box size from params
+const url = new URL(location.href);
+const BOX_SIZE = url.searchParams.get("boxsize") || DEFAULT_SIZE;
+
+// get context
 const canvas = document.querySelector("canvas#game");
 const context = canvas.getContext("2d");
 
-// resize canvas
+// setup canvas
 const width = window.innerWidth - (window.innerWidth % BOX_SIZE);
 const height = window.innerHeight - (window.innerHeight % BOX_SIZE);
-
 canvas.style.width = `${width}px`;
 canvas.style.height = `${height}px`;
 canvas.width = width / BOX_SIZE;
 canvas.height = height / BOX_SIZE;
 
-// get the grid
-const grid = [];
-for (let x = 0; x < canvas.width; x++) {
-  for (let y = 0; y < canvas.height; y++) {
-    grid.push({
-      x,
-      y
-    });
-  }
-}
+const game = Game({
+  context
+})
 
-// create snake :)
-const snake = Snake({
-  x: 0,
-  y: 0,
-  width: canvas.width,
-  height: canvas.height
+window.requestAnimationFrame(function render() {
+  game.render();
+  window.requestAnimationFrame(render)
 });
 
 function createFruit() {
