@@ -1,4 +1,5 @@
 [![gameplay](./gameplay.png)](https://wesauis.github.io/snakr)
+[![victory](./victory.png)](https://wesauis.github.io/snakr)
 *Play now: https://wesauis.github.io/snakr*
 
 # Snakr
