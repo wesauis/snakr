@@ -1,5 +1,5 @@
 import {
-  INITIAL_LENGHT
+  INITIAL_LENGTH
 } from "./config.js";
 import {
   EventManager
@@ -18,7 +18,7 @@ export default function Snake(bounds) {
 
   // create snake
   const cells = [];
-  for (let i = 0; i < INITIAL_LENGHT; i++) {
+  for (let i = 0; i < INITIAL_LENGTH; i++) {
     cells.push({
       x: Math.floor(bounds.width / 2),
       y: Math.floor(bounds.height / 2)

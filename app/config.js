@@ -4,10 +4,10 @@
 export const DEFAULT_SIZE = 20;
 
 /**
- * @constant INITIAL_LENGHT
+ * @constant INITIAL_LENGTH
  * @description set the initial length of the snake
  */
-export const INITIAL_LENGHT = 5;
+export const INITIAL_LENGTH = 5;
 
 /**
  * @constant COLORS
