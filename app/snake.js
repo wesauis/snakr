@@ -5,6 +5,13 @@ import {
   EventManager
 } from "./event.js";
 
+/**
+ * @default
+ * @function Snake
+ * @param {*} bounds
+ * @description control the snake's logic
+ * @returns Object
+ */
 export default function Snake(bounds) {
   // setup events
   const events = new EventManager(["death", "head_position"]);
@@ -24,7 +31,11 @@ export default function Snake(bounds) {
     y: 0
   };
 
-  // update positon
+  /**
+   * @function update
+   * @description update position
+   * @returns void
+   */
   function update() {
     cells.shift();
     const lastI = cells.length;

@@ -49,6 +49,10 @@ function updateScore(score) {
 updateScore(0);
 game.addEventListener("score", event => updateScore(event.data));
 
+/**
+ * @event end-game
+ * @description sets the end of the game
+ */
 game.addEventListener("end-game", event => {
   switch (event.data) {
     case "victory":

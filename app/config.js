@@ -1,7 +1,18 @@
+/**
+ * @constant DEFAULT_SIZE
+ */
 export const DEFAULT_SIZE = 20;
 
+/**
+ * @constant INITIAL_LENGHT
+ * @description set the initial length of the snake
+ */
 export const INITIAL_LENGHT = 5;
 
+/**
+ * @constant COLORS
+ * @description set all the possible colors of the program
+ */
 export const COLORS = {
   'primary-light': '#e282ad',
   'primary-dark': '#ff0080',
@@ -10,6 +21,10 @@ export const COLORS = {
   'mono-dark': '#242830',
 };
 
+/**
+ * @constant CONTROLS
+ * @description set the controls of the game
+ */
 export const CONTROLS = {
   ArrowUp: "up",
   ArrowDown: "down",
@@ -17,4 +32,8 @@ export const CONTROLS = {
   ArrowRight: "right",
 };
 
+/**
+ * @constant UPDATE_INTERVAL
+ * @description set default update interval time
+ */
 export const UPDATE_INTERVAL = 1000 / 5;
