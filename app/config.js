@@ -1,7 +1,7 @@
 /**
- * @constant DEFAULT_SIZE
+ * @constant DEFAULT_PIXEL_SIZE
  */
-export const DEFAULT_SIZE = 20;
+export const DEFAULT_PIXEL_SIZE = 20;
 
 /**
  * @constant INITIAL_LENGTH
