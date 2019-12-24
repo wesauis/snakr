@@ -50,3 +50,15 @@ h3#hi {
   right: 15px;
   opacity: 0.8;
 }
+
+#victory {
+  font-size: 4vmin;
+}
+
+.hidden {
+  display: none;
+}
+
+#victory em {
+  font-size: .5em;
+}
