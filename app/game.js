@@ -30,6 +30,7 @@ export default ({
   const HEIGHT = context.canvas.height;
   const background = generateBackground(WIDTH, HEIGHT);
 
+  let fruit;
   const snake = new Snake({
     x: 0,
     y: 0,
@@ -37,9 +38,28 @@ export default ({
     height: HEIGHT
   });
 
+  snake.addEventListener("head_position", ({
+    data
+  }) => {
+    if (data.x === fruit.x && data.y === fruit.y) {
+      fruit = undefined;
+      snake.grow();
+    }
+  });
+
   function render() {
+    // if fruit was eaten, create a new one
+    if (!fruit) fruit = {
+      x: Math.floor(Math.random() * WIDTH),
+      y: Math.floor(Math.random() * HEIGHT)
+    };
+
     // draw grid
     context.drawImage(background, 0, 0, WIDTH, HEIGHT);
+
+    // draw fruit
+    context.fillStyle = COLORS["primary-light"];
+    context.fillRect(fruit.x, fruit.y, 1, 1);
 
     // draw snake
     context.fillStyle = COLORS["mono-light"];
