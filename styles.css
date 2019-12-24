@@ -26,27 +26,27 @@ body {
 
 canvas {
   image-rendering: pixelated;
-  image-rendering: crisp-edges;
   image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
 }
 
 h1 {
   position: absolute;
-  top: 2%;
-  left: 2%;
+  top: 15px;
+  left: 15px;
   opacity: 0.8;
 }
 
 h3#score {
   position: absolute;
-  top: 1.5%;
-  right: 2%;
+  top: 15px;
+  right: 15px;
   opacity: 0.8;
 }
 
 h3#hi {
   position: absolute;
-  top: 4%;
-  right: 2%;
+  top: calc(15px + 1em);
+  right: 15px;
   opacity: 0.8;
 }
