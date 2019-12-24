@@ -34,28 +34,46 @@ window.requestAnimationFrame(function render() {
   window.requestAnimationFrame(render)
 });
 
+// maximum score for the current canvas size
+const MAX_SCORE = ($canvas.width * $canvas.height) - 5;
+
+function setScore($el, current, max) {
+  $el.innerText = `${current} / ${max}`
+}
+
 const $score = document.querySelector("#score span");
 const $hiScore = document.querySelector("#hi span");
 
-let hiScore = localStorage.getItem("high-score") || 0;
+// setup score counters
+let hiScore = localStorage.getItem("high-score-value") || 0;
+setScore($score, 0, MAX_SCORE);
+setScore($hiScore, hiScore, localStorage.getItem("high-score-max") || MAX_SCORE)
 
-function updateScore(score) {
-  $score.innerText = score;
+game.addEventListener("score", event => {
+  setScore($score, event.data, MAX_SCORE)
 
-  hiScore = Math.max(hiScore, score);
-  $hiScore.innerText = hiScore;
-  localStorage.setItem("high-score", hiScore);
+  if (event.data > hiScore) {
+    hiScore = event.data;
+
+    setScore($hiScore, hiScore, MAX_SCORE);
+    localStorage.setItem("high-score-value", hiScore);
+    localStorage.setItem("high-score-max", MAX_SCORE);
+  }
+});
+
+function toggleEl($el) {
+  $el.classList.toggle("hidden");
 }
-updateScore(0);
-game.addEventListener("score", event => updateScore(event.data));
 
 game.addEventListener("end-game", event => {
   switch (event.data) {
     case "victory":
-      document.querySelector("#win_score").innerText = $score.innerText;
-      document.querySelector("#victory").classList.toggle("hidden");
-      return $canvas.classList.toggle("hidden")
+      document.querySelector("#win_score").innerText = $score.innerText.split("/")[0];
+      toggleEl(document.querySelector("#victory"));
+      toggleEl($canvas);
+      break;
     case "death":
-      return location.reload();
+      location.reload();
+      break;
   }
 })
