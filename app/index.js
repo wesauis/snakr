@@ -14,16 +14,16 @@ const url = new URL(location.href);
 const BOX_SIZE = url.searchParams.get("boxsize") || DEFAULT_SIZE;
 
 // get context
-const canvas = document.querySelector("canvas#game");
-const context = canvas.getContext("2d");
+const $canvas = document.querySelector("canvas#game");
+const context = $canvas.getContext("2d");
 
 // setup canvas
 const width = window.innerWidth - (window.innerWidth % BOX_SIZE);
 const height = window.innerHeight - (window.innerHeight % BOX_SIZE);
-canvas.style.width = `${width}px`;
-canvas.style.height = `${height}px`;
-canvas.width = width / BOX_SIZE;
-canvas.height = height / BOX_SIZE;
+$canvas.style.width = `${width}px`;
+$canvas.style.height = `${height}px`;
+$canvas.width = width / BOX_SIZE;
+$canvas.height = height / BOX_SIZE;
 
 const game = Game({
   context
@@ -33,10 +33,6 @@ window.requestAnimationFrame(function render() {
   game.render();
   window.requestAnimationFrame(render)
 });
-
-game.addEventListener("end-game", event => {
-  location.reload();
-})
 
 const $score = document.querySelector("#score span");
 const $hiScore = document.querySelector("#hi span");
@@ -52,3 +48,14 @@ function updateScore(score) {
 }
 updateScore(0);
 game.addEventListener("score", event => updateScore(event.data));
+
+game.addEventListener("end-game", event => {
+  switch (event.data) {
+    case "victory":
+      document.querySelector("#win_score").innerText = $score.innerText;
+      document.querySelector("#victory").classList.toggle("hidden");
+      return $canvas.classList.toggle("hidden")
+    case "death":
+      return location.reload();
+  }
+})

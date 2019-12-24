@@ -56,6 +56,7 @@ export default ({
   snake.addEventListener("head_position", ({
     data
   }) => {
+    if (!fruit) return;
     if (data.x === fruit.x && data.y === fruit.y) {
       fruit = undefined;
       snake.grow();
@@ -101,6 +102,13 @@ export default ({
     // reset the interval
     if (updateID) clearInterval(updateID);
     updateID = setInterval(snake.update, UPDATE_INTERVAL);
+  });
+
+  snake.addEventListener("head_position", () => {
+    if (snake.cells.length >= WIDTH * HEIGHT) {
+      events.dispatch("end-game", "victory")
+      clearInterval(updateID);
+    }
   });
 
   snake.addEventListener("death", () => events.dispatch("end-game", "death"));
