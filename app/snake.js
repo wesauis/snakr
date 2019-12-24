@@ -60,21 +60,21 @@ export default function Snake(bounds) {
       });
     },
     update,
-    setDirection(dircode) {
+    setDir(dircode) {
       const DIRECTIONS = {
-        Up: {
+        up: {
           x: 0,
           y: -1
         },
-        Down: {
+        down: {
           x: 0,
           y: 1
         },
-        Left: {
+        left: {
           x: -1,
           y: 0
         },
-        Right: {
+        right: {
           x: 1,
           y: 0
         }

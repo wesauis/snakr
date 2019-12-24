@@ -1,4 +1,4 @@
-export const SIZE = 20;
+export const DEFAULT_SIZE = 20;
 
 export const INITIAL_LENGHT = 5;
 
@@ -9,3 +9,12 @@ export const COLORS = {
   'mono-darker': '#282c34',
   'mono-dark': '#242830',
 };
+
+export const CONTROLS = {
+  ArrowUp: "up",
+  ArrowDown: "down",
+  ArrowLeft: "left",
+  ArrowRight: "right",
+};
+
+export const UPDATE_INTERVAL = 1000 / 5;
