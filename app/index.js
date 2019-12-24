@@ -1,6 +1,7 @@
 import {
   COLORS,
-  DEFAULT_SIZE
+  DEFAULT_SIZE,
+  INITIAL_LENGHT
 } from "./config.js";
 import Game from "./game.js"
 
@@ -35,7 +36,7 @@ window.requestAnimationFrame(function render() {
 });
 
 // maximum score for the current canvas size
-const MAX_SCORE = ($canvas.width * $canvas.height) - 5;
+const MAX_SCORE = ($canvas.width * $canvas.height) - INITIAL_LENGHT;
 
 function setScore($el, current, max) {
   $el.innerText = `${current} / ${max}`
