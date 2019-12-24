@@ -1,3 +1,14 @@
+import {
+  COLORS,
+  CONTROLS,
+  UPDATE_INTERVAL
+} from "./config.js";
+
+import Snake from "./snake.js";
+import {
+  EventManager
+} from "./event.js";
+
 function generateBackground(WIDTH, HEIGHT) {
   // create the canvas
   const canvas = document.createElement("canvas");
@@ -30,6 +41,10 @@ export default ({
   const HEIGHT = context.canvas.height;
   const background = generateBackground(WIDTH, HEIGHT);
 
+  const events = new EventManager(["score", "end-game"]);
+
+  let score = 0;
+
   let fruit;
   const snake = new Snake({
     x: 0,
@@ -44,6 +59,8 @@ export default ({
     if (data.x === fruit.x && data.y === fruit.y) {
       fruit = undefined;
       snake.grow();
+
+      events.dispatch("score", ++score);
     }
   });
 
@@ -86,7 +103,10 @@ export default ({
     updateID = setInterval(snake.update, UPDATE_INTERVAL);
   });
 
+  snake.addEventListener("death", () => events.dispatch("end-game", "death"));
+
   return {
+    addEventListener: events.listen,
     render,
   }
 }
