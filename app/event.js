@@ -1,3 +1,6 @@
+/**
+ * @function EventEmitter
+ */
 export function EventEmitter() {
   const observers = [];
 
@@ -15,6 +18,10 @@ export function EventEmitter() {
   };
 }
 
+/**
+ * @function EventManager
+ * @param {*} event_types 
+ */
 export function EventManager(event_types = []) {
   const events = {};
 

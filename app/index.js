@@ -1,6 +1,6 @@
 import {
   COLORS,
-  DEFAULT_SIZE,
+  DEFAULT_PIXEL_SIZE,
   INITIAL_LENGHT
 } from "./config.js";
 import Game from "./game.js"
@@ -12,7 +12,7 @@ Object.keys(COLORS).forEach(key => {
 
 // get box size from params
 const url = new URL(location.href);
-const BOX_SIZE = url.searchParams.get("boxsize") || DEFAULT_SIZE;
+const BOX_SIZE = url.searchParams.get("boxsize") || DEFAULT_PIXEL_SIZE;
 
 // get context
 const $canvas = document.querySelector("canvas#game");
@@ -66,6 +66,10 @@ function toggleEl($el) {
   $el.classList.toggle("hidden");
 }
 
+/**
+ * @event end-game
+ * @description sets the end of the game
+ */
 game.addEventListener("end-game", event => {
   switch (event.data) {
     case "victory":

@@ -9,6 +9,13 @@ import {
   EventManager
 } from "./event.js";
 
+/**
+ * @function generateBackground
+ * @param number WIDTH 
+ * @param number HEIGHT 
+ * @description generates the background of the game
+ * @returns HTMLImageElement
+ */
 function generateBackground(WIDTH, HEIGHT) {
   // create the canvas
   const canvas = document.createElement("canvas");
@@ -53,6 +60,9 @@ export default ({
     height: HEIGHT
   });
 
+  /**
+   * @event head_position
+   */
   snake.addEventListener("head_position", ({
     data
   }) => {
@@ -65,6 +75,11 @@ export default ({
     }
   });
 
+  /**
+   * @function render
+   * @description render the screen, the points and the character
+   * @returns void
+   */
   function render() {
     // if fruit was eaten, create a new one
     if (!fruit) fruit = {
@@ -111,6 +126,10 @@ export default ({
     }
   });
 
+  /**
+   * @event death
+   * @description end the game if the player dead
+   */
   snake.addEventListener("death", () => events.dispatch("end-game", "death"));
 
   return {
