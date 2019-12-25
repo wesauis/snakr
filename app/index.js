@@ -1,16 +1,16 @@
 import {
   COLORS,
   DEFAULT_PIXEL_SIZE,
-  INITIAL_LENGHT
+  INITIAL_LENGTH
 } from "./config.js";
 import Game from "./game.js"
 
-// set color variavles on css
+// set color variables on css
 Object.keys(COLORS).forEach(key => {
   document.body.style.setProperty(`--${key}`, COLORS[key]);
 });
 
-// get box size from params
+// get box size from querry params
 const url = new URL(location.href);
 const BOX_SIZE = url.searchParams.get("boxsize") || DEFAULT_PIXEL_SIZE;
 
@@ -36,7 +36,7 @@ window.requestAnimationFrame(function render() {
 });
 
 // maximum score for the current canvas size
-const MAX_SCORE = ($canvas.width * $canvas.height) - INITIAL_LENGHT;
+const MAX_SCORE = ($canvas.width * $canvas.height) - INITIAL_LENGTH;
 
 function setScore($el, current, max) {
   $el.innerText = `${current} / ${max}`
